@@ -1,8 +1,10 @@
 import React from "react";
 import "./App.css";
 import { connect } from "react-redux";
+import * as actions from "./store/actions/actions";
+import logo from "./logo.svg";
 
-function App({ a, b, updateA, updateB }) {
+function App({ a, b, loading, updateA, updateB }) {
   return (
     <div className="App">
       <div className="col">
@@ -31,6 +33,7 @@ function App({ a, b, updateA, updateB }) {
           Update B
         </button>
       </div>
+      <div>{loading && <img src={logo} className="App-logo" alt="logo" />}</div>
     </div>
   );
 }
@@ -39,13 +42,14 @@ const mapStateToProps = (state) => {
   return {
     a: state.rA.a,
     b: state.rB.b,
+    loading: state.rLoad.loading,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    updateA: (b) => dispatch({ type: "ADD_A", b: b }),
-    updateB: (a) => dispatch({ type: "ADD_B", a: a }),
+    updateA: (b) => dispatch(actions.addA(b)),
+    updateB: (a) => dispatch(actions.addB(a)),
   };
 };
 

@@ -1,16 +1,17 @@
+import * as actionTypes from "../actions/actionTypes";
+
 const initialState = {
   a: 1,
 };
 
-const reducer = (state = initialState, action) => {
-  if (action.type === "ADD_A") {
+const reducerA = (state = initialState, action) => {
+  if (action.type === actionTypes.ADD_A) {
     return {
       ...state,
       a: state.a + action.b,
     };
   }
-
   return state;
 };
 
-export default reducer;
+export default reducerA;
